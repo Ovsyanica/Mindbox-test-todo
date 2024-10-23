@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useEffect, useState } from "react"
+import TodosList from "./components/TodosList/TodosList"
+import { StatusTypes, Todo, TodoStatusType } from "./types/types"
+import NewTodo from "./components/NewTodo/NewTodo"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [todos, setTodos] = useState<Todo[]>([])
+	const [visible, setVisible] = useState(false)
+
+
+	useEffect(() => {
+		todos.length !== 0 ? setVisible(true) : setVisible(false)
+	}, [todos])
+
+	function createNewTodo(newTodo: Todo) {
+		setTodos([...todos, newTodo])
+	}
+
+	function clearCompleted() {
+		setTodos(todos.filter(todo => todo.status !== StatusTypes.COMPLETED))
+	}
+
+	function setStatus(newStatus: TodoStatusType, todo: Todo) {
+		setTodos(todos.map(el => {
+			if (el.id === todo.id) el.status = newStatus
+			return el
+		}))
+	}
+
+	return (
+		<div className="wrapper">
+			<div className="container">
+				<div className="header">
+					<h1>todos</h1>
+				</div>
+
+				<div className="content">
+					<NewTodo visible={visible} setVisible={setVisible} createNewTodo={createNewTodo} />
+					{visible && <TodosList todos={todos} clearCompleted={clearCompleted} setStatus={setStatus} />}
+				</div>
+
+			</div>
+		</div>
+	)
 }
 
-export default App;
+export default App
