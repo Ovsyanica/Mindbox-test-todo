@@ -5,8 +5,12 @@ import { StatusTypes, Todo, TodoStatusType } from "./types/types"
 import NewTodo from "./components/NewTodo/NewTodo"
 
 
-function App() {
-	const [todos, setTodos] = useState<Todo[]>([])
+interface AppProps {
+	initialTodosState?: Todo[];
+}
+
+const App: React.FC<AppProps> = ({initialTodosState}) => {
+	const [todos, setTodos] = useState<Todo[]>(initialTodosState ? initialTodosState : [])
 	const [visible, setVisible] = useState(false)
 
 

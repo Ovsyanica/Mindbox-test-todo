@@ -22,18 +22,21 @@ const OptionsBar: React.FC<OptionsBarProps> = ({ todosLeft, category, setCategor
 			</div>
 			<div className={styles.btnsGroup}>
 				<span
+					data-testid='category-all'
 					className={category === StatusTypes.ALL ? styles.btn + ' ' + styles.active : styles.btn}
 					onClick={() => setCategory(StatusTypes.ALL)}
 				>
 					All
 				</span>
 				<span
+					data-testid='category-active'
 					className={category === StatusTypes.ACTIVE ? styles.btn + ' ' + styles.active : styles.btn}
 					onClick={() => setCategory(StatusTypes.ACTIVE)}
 				>
 					Active
 				</span>
 				<span
+					data-testid='category-completed'
 					className={category === StatusTypes.COMPLETED ? styles.btn + ' ' + styles.active : styles.btn}
 					onClick={() => setCategory(StatusTypes.COMPLETED)}
 				>
@@ -41,7 +44,7 @@ const OptionsBar: React.FC<OptionsBarProps> = ({ todosLeft, category, setCategor
 				</span>
 			</div>
 			<div className={styles.btnClear}>
-				<span className={styles.btn} onClick={() => clearCompleted()}>
+				<span data-testid='clear-completed' className={styles.btn} onClick={() => clearCompleted()}>
 					Clear completed
 				</span>
 			</div>

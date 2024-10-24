@@ -35,7 +35,6 @@ const TodosList: React.FC<TodosListProps> = ({ todos, clearCompleted, setStatus 
 					? <div data-testid='todo-empty' className={styles.noItems}>Задач нет</div>
 					: filteredTodos.map(todo => (
 						<TodoItem
-							data-testid='todo-item'
 							key={todo.id}
 							todo={todo}
 							setStatus={setStatus}

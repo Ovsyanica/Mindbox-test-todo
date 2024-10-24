@@ -43,6 +43,7 @@ const NewTodo: React.FC<NewTodoProps> = ({ visible, setVisible, createNewTodo })
 			</span>
 			<input
 				className={styles.todoInput}
+				data-testid='new-todo'
 				type="text"
 				value={description}
 				placeholder="What needs to be done?"

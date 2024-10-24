@@ -14,8 +14,9 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, setStatus }) => {
 	}
 
 	return (
-		<div className={styles.content}>
+		<div className={styles.content} data-testid='todo-item'>
 			<input
+				data-testid='todo-checkbox'
 				className={styles.checkbox}
 				id={`checkbox-${todo.id}`}
 				type="checkbox"
